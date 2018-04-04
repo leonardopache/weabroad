@@ -1,0 +1,19 @@
+<assembly>
+  <id>webApp</id>
+  <formats>
+    <format>war</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <moduleSets>
+    <moduleSet>
+      <includes>
+        <include>com.pache:rest-jaxrs</include>
+      </includes>
+      <binaries>
+        <outputDirectory>/</outputDirectory>
+        <includeDependencies>true</includeDependencies>
+        <unpack>false</unpack>
+      </binaries>
+    </moduleSet>
+  </moduleSets>
+</assembly>
