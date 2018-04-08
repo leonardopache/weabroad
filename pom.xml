@@ -4,19 +4,42 @@
 
 	<groupId>com.pache</groupId>
 	<artifactId>weabroad</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>${parent.version}</version>
 	<packaging>pom</packaging>
 
 	<name>WeAbroad</name>
-	<url></url>
+	<url>https://github.com/leonardopache/weabroad</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
+		<parent.version>1.0-SNAPSHOT</parent.version>
 	</properties>
 
-	<dependencies>
-	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.pache</groupId>
+				<artifactId>count-days-core</artifactId>
+				<version>${parent.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pache</groupId>
+				<artifactId>send-mail-api</artifactId>
+				<version>${parent.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pache</groupId>
+				<artifactId>job-days-quartz</artifactId>
+				<version>${parent.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pache</groupId>
+				<artifactId>rest-jaxrs</artifactId>
+				<version>${parent.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<modules>
 		<module>count-days-core</module>

@@ -4,21 +4,18 @@
 	<parent>
 		<groupId>com.pache</groupId>
 		<artifactId>weabroad</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>${parent.version}</version>
 	</parent>
 
 	<artifactId>job-days-quartz</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Job Days</name>
-	<url>https://github.com/leonardopache/job-days-quartz.git</url>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.pache</groupId>
-			<artifactId>count-days</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>count-days-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
