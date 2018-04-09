@@ -17,7 +17,6 @@ public class MyJobServletListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-//		ServletContextListener.super.contextDestroyed(sce);
 		try {
 			CountDaysSchedule.run();
 			LOG.info(">>>>>>> ServletContextEvent initialized!!{}", sce);
@@ -30,7 +29,6 @@ public class MyJobServletListener implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent sce) {
 		try {
 			CountDaysSchedule.stop();
-//			ServletContextListener.super.contextDestroyed(sce);
 			LOG.info("<<<<<<< ServletContextEvent destroyed!!{}", sce);
 		} catch (JobManagerException e) {
 			LOG.error(e.getMessage());

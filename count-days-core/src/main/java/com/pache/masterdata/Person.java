@@ -15,6 +15,7 @@ public class Person {
 	private String initialDate;
 	private String email;
 	private String name;
+	private String locale;
 	
 	public Person(String initialDate, String email, String name) {
 		this.initialDate = initialDate;
@@ -44,6 +45,14 @@ public class Person {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 
 }

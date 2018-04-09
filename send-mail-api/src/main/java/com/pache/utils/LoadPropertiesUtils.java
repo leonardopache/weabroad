@@ -33,6 +33,7 @@ public class LoadPropertiesUtils {
 
 	private LoadPropertiesUtils() {
 		logger.info("Start load mail properties...");
+		
 		properties.put(EMAIL_USER, "user");
 		properties.put(EMAIL_PASS, "pass");
 	}

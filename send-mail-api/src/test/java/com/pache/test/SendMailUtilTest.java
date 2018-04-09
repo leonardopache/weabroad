@@ -2,12 +2,21 @@ package com.pache.test;
 
 import static org.junit.Assert.fail;
 
+import javax.mail.MessagingException;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import com.pache.exceptions.EmailError;
 import com.pache.utils.SendMailUtil;
 
 public class SendMailUtilTest {
+	
+	@Before
+	public void setup() throws MessagingException {
+//		Transport t = mock(Transport.class);
+//		doNothing().when(t).send((Message) any(Message.class));
+	}
 	
 	@Test
 	public void testSendByTLS() {
