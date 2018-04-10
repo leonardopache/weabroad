@@ -29,11 +29,11 @@ import com.pache.exceptions.EmailError;
 public class SendMailUtil {
 
 	private static Logger logger = LoggerFactory.getLogger(SendMailUtil.class);
-	
+
 	private static final String FROM_EMAIL_GMAIL_COM = "from-email@gmail.com";
 	private static String username;
 	private static String password;
-	
+
 	static {
 		try {
 			username = LoadPropertiesUtils.getInstance().getValue(LoadPropertiesUtils.EMAIL_USER);
@@ -42,7 +42,7 @@ public class SendMailUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private SendMailUtil() {
 		throw new InstantiationError("Not Alowed!");
 	}
@@ -72,7 +72,7 @@ public class SendMailUtil {
 	public static void sendBySSL(String destination, String subject, String body, String... ccDestinations)
 			throws EmailError {
 		logger.info("Start send mail SSL!");
-		
+
 		try {
 			Properties props = loadProperties("SSL");
 			Session session = createSession(username, password, props);
@@ -99,17 +99,13 @@ public class SendMailUtil {
 		});
 		return session;
 	}
-	
+
 	private static Properties loadProperties(String protocol) throws EmailError, IOException {
-		Properties props;
 		switch (protocol) {
 		case "TLS":
-			props = LoadPropertiesUtils.getInstance().getTLS();
-			return props;
+			return LoadPropertiesUtils.getInstance().getTls();
 		case "SSL":
-			props = LoadPropertiesUtils.getInstance().getSSL();
-			return props;
-
+			return LoadPropertiesUtils.getInstance().getSsl();
 		default:
 			throw new EmailError("Error - protocol undefined");
 		}
