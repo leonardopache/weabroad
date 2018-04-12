@@ -22,6 +22,7 @@ public class CountDaysJob implements Job {
 	 */
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		AnniversaryCount.sendMailToAnniversary();
+		AnniversaryCount.sendMailToFiveDaysRegressive();
 	}
 
 }

@@ -113,5 +113,10 @@ public class SendMailUtil {
 
 	public static void sendMailToAniversary(String destinatary) {
 		logger.info("One year {}!!", destinatary);
+		try {
+			sendBySSL(destinatary, "Aniversary", "body", "");
+		} catch (EmailError e) {
+			logger.error("Error {}!!", e.getMessage());
+		}
 	}
 }

@@ -48,9 +48,9 @@ public class LoadPropertiesUtils {
 	}
 
 	public static synchronized LoadPropertiesUtils getInstance() throws IOException {
-		if (instance == null) {
+//		if (instance == null) {
 			instance = new LoadPropertiesUtils();
-		}
+//		}
 		return instance;
 	}
 

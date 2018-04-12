@@ -35,6 +35,19 @@ public class CountDaysSchedule {
 
 			schedule.scheduleJob(job, trigger);
 			schedule.start();
+			
+			
+			JobDetail job2 = JobBuilder.newJob(CountDaysJob.class).withIdentity("job2").build();
+
+			// Trigger the job to run every minute
+			Trigger trigger2 = TriggerBuilder.newTrigger().withIdentity("trigger2")
+					.withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * ?")).build();
+
+			SchedulerFactory schFactory2 = new StdSchedulerFactory();
+			schedule = schFactory2.getScheduler();
+
+			schedule.scheduleJob(job2, trigger2);
+			schedule.start();
 			LOG.info("Initialized Job! {}", CountDaysJob.class);
 		} catch (SchedulerException e) {
 			LOG.error(e.getMessage(), e);
