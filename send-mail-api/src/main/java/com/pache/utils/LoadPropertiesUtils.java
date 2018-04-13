@@ -5,10 +5,6 @@ package com.pache.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -48,9 +44,9 @@ public class LoadPropertiesUtils {
 	}
 
 	public static synchronized LoadPropertiesUtils getInstance() throws IOException {
-//		if (instance == null) {
+		if (instance == null) {
 			instance = new LoadPropertiesUtils();
-//		}
+		}
 		return instance;
 	}
 
@@ -93,9 +89,7 @@ public class LoadPropertiesUtils {
 		}
 	}
 	
-	private InputStream loadFileProperties(String propertiesFile) throws URISyntaxException, IOException {
-		Path path = Paths.get(getClass().getClassLoader().getResource(propertiesFile).toURI());
-		logger.info("Config location: " + path.toString());
-		return Files.newInputStream(path);
+	private InputStream loadFileProperties(String propertiesFile) {
+		return LoadPropertiesUtils.class.getClassLoader().getResourceAsStream(propertiesFile);
 	}
 }

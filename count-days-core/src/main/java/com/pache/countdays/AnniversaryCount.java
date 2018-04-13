@@ -29,24 +29,24 @@ public class AnniversaryCount {
 	}
 
 	public static void sendMailToAnniversary() {
-		logger.info("INIT:{} ", AnniversaryCount.class);
+		logger.info("INIT:{} sendMailToAnniversary", AnniversaryCount.class);
 		for (Person item : PersonDAO.getAll()) {
 			if (formatter.parseDateTime(item.getInitialDate()).plusYears(1).compareTo(DateTime.now()) < 0) {
 				SendMailUtil.sendMailToAniversary(item.getEmail());
 			}
-			logger.info("Days {}: {}", item.getName(), DayCount.newCountDays(
+			logger.debug("Days {}: {}", item.getName(), DayCount.newCountDays(
 					formatter.parseDateTime(item.getInitialDate()).getMillis(), DateTime.now().getMillis()));
 		}
 	}
 
 	public static void sendMailToFiveDaysRegressive() {
-		logger.info("INIT : sendMailToFiveDaysRegressive ");
+		logger.info("INIT : sendMailToFiveDaysRegressive");
 		for (Person item : PersonDAO.getAll()) {
 			int diff = Days.daysBetween(DateTime.now(), formatter.parseDateTime(item.getInitialDate()).plusYears(1)).getDays();
 			if (diff > 0 && diff < 5) {
-				SendMailUtil.sendMailToAniversary(item.getEmail());
+				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff);
 			}
-			logger.info("Days {}: {}", item.getName(), DayCount.newCountDays(
+			logger.debug("Days {}: {}", item.getName(), DayCount.newCountDays(
 					formatter.parseDateTime(item.getInitialDate()).getMillis(), DateTime.now().getMillis()));
 		}
 	}

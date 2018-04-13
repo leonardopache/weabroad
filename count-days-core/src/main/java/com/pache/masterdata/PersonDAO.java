@@ -21,7 +21,7 @@ public class PersonDAO {
 //		id++;
 //		md.put(id, new Person(Person.JU_START, "mail@mail.com", "Ju"));
 		id++;
-		md.put(id, new Person(Person.LEO_START, "mail@mail.com", "Leo"));
+		md.put(id, new Person(Person.LEO_START, "leonardo@pache.eng.br", "Leo"));
 	}
 
 	public static List<Person> getAll() {

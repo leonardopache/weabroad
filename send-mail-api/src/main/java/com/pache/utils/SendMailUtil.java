@@ -114,7 +114,17 @@ public class SendMailUtil {
 	public static void sendMailToAniversary(String destinatary) {
 		logger.info("One year {}!!", destinatary);
 		try {
-			sendBySSL(destinatary, "Aniversary", "body", "");
+			sendBySSL(destinatary, "Aniversary", "5\n and counting...", "");
+		} catch (EmailError e) {
+			logger.error("Error {}!!", e.getMessage());
+		}
+	}
+
+	public static void sendMailToRegressiveDays(String destinatary, int diff) {
+		logger.info("{} year {}!!", diff,  destinatary);
+		try {
+			String body = diff+"\n and counting...";
+			sendBySSL(destinatary, "Aniversary", body, "");
 		} catch (EmailError e) {
 			logger.error("Error {}!!", e.getMessage());
 		}

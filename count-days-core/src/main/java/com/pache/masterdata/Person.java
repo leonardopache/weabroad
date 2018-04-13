@@ -10,7 +10,7 @@ package com.pache.masterdata;
 public class Person {
 	
 	protected static final String JU_START = "15/05/2017";
-	protected static final String LEO_START = "18/04/2017";
+	protected static final String LEO_START = "20/04/2017";
 
 	private String initialDate;
 	private String email;
