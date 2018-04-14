@@ -4,6 +4,7 @@
 package com.pache.countdays;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
@@ -14,24 +15,23 @@ import com.pache.masterdata.PersonDAO;
 import com.pache.utils.SendMailUtil;
 
 /**
- * Class responsible for verify if is the anniversary and send email
- * 
  * @author lpache
  */
-public class AnniversaryCount {
+public class RegressiveCounting {
 
 	private static DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
 	private static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
 
-	private AnniversaryCount() {
+	private RegressiveCounting() {
 		throw new InstantiationError("Utility class, do not instantiate!!!");
 	}
 
-	public static void sendMailToAnniversary() {
-		logger.info("INIT:{} ", AnniversaryCount.class);
+	public static void sendMailToFiveDaysRegressive() {
+		logger.info("INIT : {}", RegressiveCounting.class);
 		for (Person item : PersonDAO.getAll()) {
-			if (formatter.parseDateTime(item.getInitialDate()).plusYears(1).compareTo(DateTime.now()) < 0) {
-				SendMailUtil.sendMailToAniversary(item.getEmail());
+			int diff = Days.daysBetween(DateTime.now(), formatter.parseDateTime(item.getInitialDate()).plusYears(1)).getDays();
+			if (diff > 0 && diff < 5) {
+				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff+1);
 			}
 			logger.debug("Days {}: {}", item.getName(), DayCount.newCountDays(
 					formatter.parseDateTime(item.getInitialDate()).getMillis(), DateTime.now().getMillis()));
