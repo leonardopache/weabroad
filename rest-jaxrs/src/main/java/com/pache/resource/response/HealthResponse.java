@@ -2,11 +2,13 @@ package com.pache.resource.response;
 
 import javax.ws.rs.core.Response.Status;
 
+import org.joda.time.DateTime;
+
 public class HealthResponse {
 
 	private Status status;
 	private String version;
-	private Object properties;
+	private Object properties = DateTime.now();
 	private HealthResponse[] dependencies;
 
 	public HealthResponse(Status status, String version) {
