@@ -22,7 +22,7 @@ public class SendMailUtilTest {
 	public void testSendByTLS() {
 		String destination = "leonardo@pache.eng.br";
 		String subject = "Unit Test EmailAPI";
-		String body = ":)";
+		String body = String.format("Hi %s only %d days to Aniversary!!!<br> and counting...", "unit test", 5);
 		try {
 			SendMailUtil.sendByTLS(destination, subject, body);
 		} catch (EmailError e) {
@@ -34,7 +34,7 @@ public class SendMailUtilTest {
 	public void testSendBySSL() {
 		String destination = "leonardo@pache.eng.br";
 		String subject = "Unit Test EmailAPI";
-		String body = ":)";
+		String body = String.format("Hi %s only %d days to Aniversary!!!<br> and counting...", ":)", 5);
 		try {
 			SendMailUtil.sendBySSL(destination, subject, body);
 		} catch (EmailError e) {

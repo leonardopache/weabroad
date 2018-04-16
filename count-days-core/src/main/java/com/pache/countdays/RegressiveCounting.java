@@ -29,9 +29,9 @@ public class RegressiveCounting {
 	public static void sendMailToFiveDaysRegressive() {
 		logger.info("INIT : {}", RegressiveCounting.class);
 		for (Person item : PersonDAO.getAll()) {
-			int diff = Days.daysBetween(DateTime.now(), formatter.parseDateTime(item.getInitialDate()).plusYears(1)).getDays();
+			int diff = Days.daysBetween(DateTime.now(), formatter.parseDateTime(item.getInitialDate()).plusYears(1)).getDays()+1;
 			if (diff > 0 && diff < 5) {
-				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff+1);
+				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff, item.getName());
 			}
 			logger.debug("Days {}: {}", item.getName(), DayCount.newCountDays(
 					formatter.parseDateTime(item.getInitialDate()).getMillis(), DateTime.now().getMillis()));

@@ -4,9 +4,12 @@
 package com.pache.utils;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 
+import javax.mail.Address;
 import javax.mail.Message;
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -55,12 +58,22 @@ public class SendMailUtil {
 			Properties props = loadProperties("TLS");
 			Session session = createSession(username, password, props);
 
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(FROM_EMAIL_GMAIL_COM));
+			MimeMessage message = new MimeMessage(session);
+			message.addHeader("Content-type", "text/HTML; charset=utf-8");
+			message.addHeader("format", "flowed");
+			message.addHeader("Content-Transfer-Encoding", "8bit");
+			
+			message.setFrom(new InternetAddress(FROM_EMAIL_GMAIL_COM, true));
+			for (String ccDestination : ccDestinations) {
+				message.addRecipient(RecipientType.BCC, new InternetAddress(ccDestination, true));
+			}
+			message.setSubject(subject, "utf-8");
+			message.setSentDate(new Date());
+			
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destination));
 			message.setSubject(subject);
-			message.setText(body);
-
+//			message.setContent(getBodyGeneric(body), "text/html");
+			message.setText(getBodyGeneric(body), "utf-8", "html");
 			Transport.send(message);
 			logger.info("End send mail TLS!");
 		} catch (MessagingException | IOException e) {
@@ -77,18 +90,33 @@ public class SendMailUtil {
 			Properties props = loadProperties("SSL");
 			Session session = createSession(username, password, props);
 
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(FROM_EMAIL_GMAIL_COM));
+			MimeMessage message = new MimeMessage(session);
+			message.addHeader("Content-type", "text/HTML; charset=utf-8");
+			message.addHeader("format", "flowed");
+			message.addHeader("Content-Transfer-Encoding", "8bit");
+			
+			message.setFrom(new InternetAddress(FROM_EMAIL_GMAIL_COM, true));
+			for (String ccDestination : ccDestinations) {
+				message.addRecipient(RecipientType.BCC, new InternetAddress(ccDestination, true));
+			}
+			message.setSubject(subject, "utf-8");
+			message.setSentDate(new Date());
+			
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destination));
 			message.setSubject(subject);
-			message.setText(body);
-
+//			message.setContent(getBodyGeneric(body), "text/html");
+			message.setText(getBodyGeneric(body), "utf-8", "html");
+			
 			Transport.send(message);
 			logger.info("End send mail SSL!");
 		} catch (MessagingException | IOException e) {
 			logger.error(e.getMessage());
 			throw new EmailError(e.getMessage());
 		}
+	}
+	
+	private static String getBodyGeneric(String str) {
+		return String.format("<div style=\"text-align: center;\"><b><font color=black size=\"8\">%s</font></b><br></div>", str);
 	}
 
 	private static Session createSession(final String username, final String password, Properties props) {
@@ -114,17 +142,17 @@ public class SendMailUtil {
 	public static void sendMailToAniversary(String destinatary) {
 		logger.info("One year {}!!", destinatary);
 		try {
-			sendBySSL(destinatary, "Aniversary", "5\n and counting...", "");
+			sendBySSL(destinatary, "Aniversary", "5\n and counting...", "leonardo@pache.eng.br");
 		} catch (EmailError e) {
 			logger.error("Error {}!!", e.getMessage());
 		}
 	}
 
-	public static void sendMailToRegressiveDays(String destinatary, int diff) {
+	public static void sendMailToRegressiveDays(String destinatary, int diff, String name) {
 		logger.info("{} year {}!!", diff,  destinatary);
 		try {
-			String body = diff+"\n and counting...";
-			sendBySSL(destinatary, "Aniversary", body, "");
+			String body = String.format("Hi %s only %d days to Aniversary!!!\n and counting...",name, diff);
+			sendBySSL(destinatary, "Regressive Counting", body, "leonardo@pache.eng.br");
 		} catch (EmailError e) {
 			logger.error("Error {}!!", e.getMessage());
 		}
