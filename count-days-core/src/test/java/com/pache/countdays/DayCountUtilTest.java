@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
-public class DayCountTest extends TestCase {
+public class DayCountUtilTest extends TestCase {
 
 	@Test
 	public void testCountDays() {
@@ -14,7 +14,7 @@ public class DayCountTest extends TestCase {
 		Calendar endingDay = Calendar.getInstance();
 		endingDay.add(Calendar.DAY_OF_YEAR, 30);
 		
-		int count = DayCount.newCountDays(beginningDay.getTimeInMillis(), endingDay.getTimeInMillis());
+		int count = DayCountUtil.getDiffInDays(beginningDay.getTimeInMillis(), endingDay.getTimeInMillis());
 		assertEquals(30, count);
 	}
 	

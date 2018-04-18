@@ -1,1 +1,12 @@
-We Abroad
+# We-abroad
+
+### Sample using some programming concepts using:
+
+- Java8
+- Quartz
+- Jax-rs / Jersey
+- mail
+- Maven
+
+### Project Structure
+

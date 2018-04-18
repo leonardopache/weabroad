@@ -4,8 +4,6 @@
 package com.pache.countdays;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,21 +18,20 @@ import com.pache.utils.SendMailUtil;
  */
 public class AnniversaryCount {
 
-	private static DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
 	private static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
 
 	private AnniversaryCount() {
 		throw new InstantiationError("Utility class, do not instantiate!!!");
 	}
 
+	//TODO MODULE COUTNDAYS MUST HAVE ONLY DAY CALCULATIONS... it's a function of business
 	public static void sendMailToAnniversary() {
 		logger.info("INIT:{} ", AnniversaryCount.class);
 		for (Person item : PersonDAO.getAll()) {
-			if (formatter.parseDateTime(item.getInitialDate()).plusYears(1).compareTo(DateTime.now()) < 0) {
+			if (item.getInitialDate().plusYears(1).compareTo(DateTime.now()) < 0) {
 				SendMailUtil.sendMailToAniversary(item.getEmail());
 			}
-			logger.debug("Days {}: {}", item.getName(), DayCount.newCountDays(
-					formatter.parseDateTime(item.getInitialDate()).getMillis(), DateTime.now().getMillis()));
+			logger.debug("Days {}: {}", item.getName(), DayCountUtil.getDiffInDays(item.getInitialDate().getMillis(), DateTime.now().getMillis()));
 		}
 	}
 

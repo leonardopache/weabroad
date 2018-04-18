@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;

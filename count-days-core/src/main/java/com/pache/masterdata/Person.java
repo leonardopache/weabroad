@@ -3,6 +3,10 @@
  */
 package com.pache.masterdata;
 
+import org.joda.time.DateTime;
+
+import com.pache.countdays.DayCountUtil;
+
 /**
  * @author lpache
  *
@@ -11,23 +15,24 @@ public class Person {
 	
 	protected static final String JU_START = "15/05/2017";
 	protected static final String LEO_START = "20/04/2017";
+	
 
-	private String initialDate;
+	private DateTime initialDate;
 	private String email;
 	private String name;
 	private String locale;
 	
 	public Person(String initialDate, String email, String name) {
-		this.initialDate = initialDate;
+		this.initialDate = DayCountUtil.formatter.parseDateTime(initialDate);
 		this.email = email;
 		this.name = name;
 	}
 
-	public String getInitialDate() {
+	public DateTime getInitialDate() {
 		return initialDate;
 	}
 
-	public void setInitialDate(String initialDate) {
+	public void setInitialDate(DateTime initialDate) {
 		this.initialDate = initialDate;
 	}
 
