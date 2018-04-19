@@ -9,4 +9,4 @@
 - Maven
 
 ### Project Structure
-![weabrod structure](resources/struct-project.jpeg)
+![weabrod structure](resources/weabroad.png)
