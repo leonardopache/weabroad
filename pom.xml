@@ -38,6 +38,11 @@
 				<artifactId>rest-jaxrs</artifactId>
 				<version>${parent.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.pache</groupId>
+				<artifactId>aniversary-app</artifactId>
+				<version>${parent.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -46,6 +51,7 @@
 		<module>send-mail-api</module>
 		<module>job-days-quartz</module>
 		<module>rest-jaxrs</module>
+		<module>aniversary-app</module>
 	</modules>
 
 	<build>
