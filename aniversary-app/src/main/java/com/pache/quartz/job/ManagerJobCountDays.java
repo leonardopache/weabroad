@@ -1,14 +1,14 @@
-package com.pache.service;
+package com.pache.quartz.job;
 
 import com.pache.exception.JobManagerException;
-import com.pache.quartz.CountDaysSchedule;
-import com.pache.resource.ManagerControls;
+import com.pache.quartz.job.schedule.CountDaysSchedule;
 import com.pache.resource.exception.ApplicationResponseError;
+import com.pache.utils.ManagerControls;
 
 //TODO use injection 
-public class ManagerJobs {
+public class ManagerJobCountDays {
 
-	private ManagerJobs() {	}
+	private ManagerJobCountDays() {	}
 
 	public static void jobCountDays(ManagerControls control) throws ApplicationResponseError {
 		switch (control) {
