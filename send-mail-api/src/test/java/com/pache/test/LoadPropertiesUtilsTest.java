@@ -1,6 +1,5 @@
 package com.pache.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -24,12 +23,11 @@ public class LoadPropertiesUtilsTest {
 	@Test
 	public void testGetValue() {
 		try {
-		String key = LoadPropertiesUtils.EMAIL_USER;
-		String valueReceived;
+			String key = LoadPropertiesUtils.EMAIL_USER;
+			String valueReceived;
 			valueReceived = LoadPropertiesUtils.getInstance().getValue(key);
-			String valueExpected = "user";
-			
-			assertEquals(valueReceived, valueExpected);
+
+			assertNotNull(valueReceived);
 		} catch (IOException e) {
 			fail();
 		}

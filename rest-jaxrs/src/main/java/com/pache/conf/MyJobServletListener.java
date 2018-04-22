@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pache.exception.JobManagerException;
-import com.pache.quartz.CountDaysSchedule;
+import com.pache.quartz.job.schedule.CountDaysSchedule;
 
 @WebListener
 public class MyJobServletListener implements ServletContextListener {

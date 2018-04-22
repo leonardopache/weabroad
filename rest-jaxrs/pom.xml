@@ -15,7 +15,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.pache</groupId>
-			<artifactId>job-days-quartz</artifactId>
+			<artifactId>aniversary-app</artifactId>
 		</dependency>
 	
 		<!-- Servlet -->
@@ -42,6 +42,7 @@
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>2.20</version>
 		</dependency>
+		
 		<!-- jersey-media-json-jackson -->
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
@@ -55,9 +56,13 @@
 
 		<!-- Test -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
 			<scope>test</scope>
 		</dependency>
 

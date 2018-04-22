@@ -20,9 +20,9 @@ public class DayCountUtil {
 		throw new InstantiationError("Utility class, do not instantiate!!!");
 	}
 
-	protected static int getDiffInDays(long startTime, long timeNow) {
+	public static int getDiffInDays(long startTime, long timeNow) {
 		logger.debug("Count days between {} and {}", startTime, timeNow);
-		Days days = Days.daysBetween(new DateTime(startTime), new DateTime(timeNow));
+		Days days = Days.daysBetween(new DateTime(startTime).withTimeAtStartOfDay(), new DateTime(timeNow).withTimeAtStartOfDay());
 		return days.getDays();
 	}
 }

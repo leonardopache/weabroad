@@ -7,17 +7,17 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import com.pache.countdays.RegressiveCounting;
+import com.pache.service.AnniversaryCount;
+
 
 /**
- * 
+ *  Class responsible for execute the function that it will be scheduled.
  * @author lpache
  */
-public class RegressiveCountJob implements Job {
+public class AniversaryJob implements Job {
 
-	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		RegressiveCounting.sendMailToFiveDaysRegressive();
+		AnniversaryCount.sendMailToAnniversary();
 	}
 
 }
