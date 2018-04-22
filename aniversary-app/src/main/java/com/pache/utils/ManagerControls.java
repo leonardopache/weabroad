@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pache.resource;
+package com.pache.utils;
 
 /**
  * @author lpache

@@ -1,12 +1,13 @@
 /**
  * 
  */
-package com.pache.countdays;
+package com.pache.service;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pache.countdays.DayCountUtil;
 import com.pache.masterdata.Person;
 import com.pache.masterdata.PersonDAO;
 import com.pache.utils.SendMailUtil;
@@ -24,14 +25,15 @@ public class AnniversaryCount {
 		throw new InstantiationError("Utility class, do not instantiate!!!");
 	}
 
-	//TODO MODULE COUTNDAYS MUST HAVE ONLY DAY CALCULATIONS... it's a function of business
 	public static void sendMailToAnniversary() {
 		logger.info("INIT:{} ", AnniversaryCount.class);
 		for (Person item : PersonDAO.getAll()) {
-			if (item.getInitialDate().plusYears(1).compareTo(DateTime.now()) < 0) {
-				SendMailUtil.sendMailToAniversary(item.getEmail());
+			int diff = DayCountUtil.getDiffInDays(item.getInitialDate().plusYears(1).getMillis(), DateTime.now().getMillis());
+			//TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
+			if (diff == 0) {
+				SendMailUtil.sendMailToAniversary(item.getEmail(), item.getName());
 			}
-			logger.debug("Days {}: {}", item.getName(), DayCountUtil.getDiffInDays(item.getInitialDate().getMillis(), DateTime.now().getMillis()));
+			logger.debug("Days {}: {}", item.getName(), diff);
 		}
 	}
 

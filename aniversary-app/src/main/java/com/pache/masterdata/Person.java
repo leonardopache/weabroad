@@ -14,8 +14,7 @@ import com.pache.countdays.DayCountUtil;
 public class Person {
 	
 	protected static final String JU_START = "15/05/2017";
-	protected static final String LEO_START = "20/04/2017";
-	
+	protected static final String LEO_START = "29/04/2017";
 
 	private DateTime initialDate;
 	private String email;

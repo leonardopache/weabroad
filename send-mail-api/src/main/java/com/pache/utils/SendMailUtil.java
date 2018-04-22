@@ -138,10 +138,11 @@ public class SendMailUtil {
 		}
 	}
 
-	public static void sendMailToAniversary(String destinatary) {
-		logger.info("One year {}!!", destinatary);
+	public static void sendMailToAniversary(String destinatary, String name) {
+		logger.info("validate niversary of {}!!", destinatary);
 		try {
-			sendBySSL(destinatary, "Aniversary", "5\n and counting...", "leonardo@pache.eng.br");
+			String body = String.format("Hi %s congratulations!!!\\n Today is your Aniversary!!!\n and counting...",name);
+			sendBySSL(destinatary, "Aniversary", body, "leonardo@pache.eng.br");
 		} catch (EmailError e) {
 			logger.error("Error {}!!", e.getMessage());
 		}
