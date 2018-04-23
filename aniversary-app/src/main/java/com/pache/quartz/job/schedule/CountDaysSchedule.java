@@ -29,10 +29,10 @@ public class CountDaysSchedule {
 
 		// Trigger the job to run every year
 		Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", GROUP)
-				.withSchedule(CronScheduleBuilder.cronSchedule("0 0/10 * * * ?")).build();
+				.withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * * ?")).build();
 		// Trigger the job to run the last 5 days
 		Trigger trigger2 = TriggerBuilder.newTrigger().withIdentity("trigger2", GROUP)
-				.withSchedule(CronScheduleBuilder.cronSchedule("0 0/10 * * * ?")).build();
+				.withSchedule(CronScheduleBuilder.cronSchedule("0 0 0 * * * ?")).build();
 
 		JobKey jobKeyA = new JobKey("job1", GROUP);
 		JobDetail jobAniversary = JobBuilder.newJob(AniversaryJob.class).withIdentity(jobKeyA).build();
