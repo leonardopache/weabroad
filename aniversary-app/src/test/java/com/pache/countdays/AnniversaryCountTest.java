@@ -14,6 +14,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.pache.exceptions.EmailError;
 import com.pache.masterdata.Person;
 import com.pache.masterdata.PersonDAO;
 import com.pache.service.AnniversaryCount;
@@ -43,13 +44,15 @@ public class AnniversaryCountTest {
 		PowerMockito.mockStatic(SendMailUtil.class);
 		String message = "Mail sent";
 		PowerMockito.doThrow(new RuntimeException(message)).when(SendMailUtil.class);
-		SendMailUtil.sendMailToAniversary(anyString(), anyString());
 
 		try {
-			AnniversaryCount.sendMailToAnniversary();
+			SendMailUtil.sendBySSL(anyString(), anyString(), anyString(), anyString());
+			new AnniversaryCount().sendMailToAnniversary();
 			fail("It shoud throw an runtime exception!!");
 		} catch (RuntimeException e) {
 			assertEquals(e.getMessage(), message);
+		} catch (EmailError e) {
+			fail(e.getMessage());
 		}
 	}
 
@@ -68,12 +71,14 @@ public class AnniversaryCountTest {
 		PowerMockito.mockStatic(SendMailUtil.class);
 		String message = "Mail sent";
 		PowerMockito.doThrow(new RuntimeException(message)).when(SendMailUtil.class);
-		SendMailUtil.sendMailToAniversary(anyString(), anyString());
 
 		try {
-			AnniversaryCount.sendMailToAnniversary();
+			SendMailUtil.sendBySSL(anyString(), anyString(), anyString(), anyString());
+			new AnniversaryCount().sendMailToAnniversary();
 		} catch (RuntimeException e) {
 			fail("It not shoud throw an runtime exception!!");
+		} catch (EmailError e) {
+			fail(e.getMessage());
 		}
 	}
 	
@@ -92,12 +97,14 @@ public class AnniversaryCountTest {
 		PowerMockito.mockStatic(SendMailUtil.class);
 		String message = "Mail sent";
 		PowerMockito.doThrow(new RuntimeException(message)).when(SendMailUtil.class);
-		SendMailUtil.sendMailToAniversary(anyString(), anyString());
 
 		try {
-			AnniversaryCount.sendMailToAnniversary();
+			SendMailUtil.sendBySSL(anyString(), anyString(), anyString(), anyString());
+			new AnniversaryCount().sendMailToAnniversary();
 		} catch (RuntimeException e) {
 			fail("It not shoud throw an runtime exception!!");
+		} catch (EmailError e) {
+			fail(e.getMessage());
 		}
 	}
 

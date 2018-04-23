@@ -137,24 +137,5 @@ public class SendMailUtil {
 			throw new EmailError("Error - protocol undefined");
 		}
 	}
-
-	public static void sendMailToAniversary(String destinatary, String name) {
-		logger.info("validate niversary of {}!!", destinatary);
-		try {
-			String body = String.format("Hi %s congratulations!!!\\n Today is your Aniversary!!!\n and counting...",name);
-			sendBySSL(destinatary, "Aniversary", body, "leonardo@pache.eng.br");
-		} catch (EmailError e) {
-			logger.error("Error {}!!", e.getMessage());
-		}
-	}
-
-	public static void sendMailToRegressiveDays(String destinatary, int diff, String name) {
-		logger.info("{} year {}!!", diff,  destinatary);
-		try {
-			String body = String.format("Hi %s only %d days to Aniversary!!!\n and counting...",name, diff);
-			sendBySSL(destinatary, "Regressive Counting", body, "leonardo@pache.eng.br");
-		} catch (EmailError e) {
-			logger.error("Error {}!!", e.getMessage());
-		}
-	}
+	
 }

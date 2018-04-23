@@ -1,4 +1,4 @@
-package com.pache.resource.exception;
+package com.pache.app.exception;
 
 public class ApplicationResponseError extends Exception {
 

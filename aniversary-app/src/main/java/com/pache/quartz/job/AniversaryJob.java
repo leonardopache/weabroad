@@ -17,7 +17,7 @@ import com.pache.service.AnniversaryCount;
 public class AniversaryJob implements Job {
 
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		AnniversaryCount.sendMailToAnniversary();
+		new AnniversaryCount().sendMailToAnniversary();
 	}
 
 }
