@@ -32,7 +32,7 @@ public class RegressiveCountingTest {
 	@Test
 	public void testNotSendSixDaysBefore() {
 		List<Person> people = new ArrayList<Person>();
-		DateTime now = DateTime.now().minusYears(1).minusDays(6);
+		DateTime now = DateTime.now().minusYears(1).plusDays(6);
 		people.add(new Person(now.getDayOfMonth() + "/" + now.getMonthOfYear() + "/" + now.getYear(),
 				"unitTest@mock.test", "Mr. Mockito"));
 
@@ -56,7 +56,7 @@ public class RegressiveCountingTest {
 	@Test
 	public void testSendFiveDaysBefore() {
 		List<Person> people = new ArrayList<Person>();
-		DateTime now = DateTime.now().minusYears(1).minusDays(5);
+		DateTime now = DateTime.now().minusYears(1).plusDays(5);
 		people.add(new Person(now.getDayOfMonth() + "/" + now.getMonthOfYear() + "/" + now.getYear(),
 				"unitTest@mock.test", "Mr. Mockito"));
 
