@@ -28,8 +28,8 @@ public class RegressiveCounting extends AbstractComposer {
 			int diff = DayCountUtil.getDiffInDays(item.getInitialDate().plusYears(1).getMillis(),
 					DateTime.now().getMillis());
 			// TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
-			if (diff > 0 && diff <= 5) {
-				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff, item.getName());
+			if (diff >= -5 && diff < 0) {
+				send(person.getEmail(), person.getName());
 			}
 			logger.debug("Days {}: {}", person.getName(), diff);
 		}
