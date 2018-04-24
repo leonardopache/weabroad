@@ -1,6 +1,6 @@
 # We-abroad
 
-### Sample using some programming concepts using:
+### Sample using some programming concepts like:
 
 - Java8
 - Quartz
