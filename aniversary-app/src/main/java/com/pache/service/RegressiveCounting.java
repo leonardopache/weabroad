@@ -14,18 +14,14 @@ import com.pache.masterdata.PersonDAO;
 /**
  * @author lpache
  */
-public class RegressiveCounting extends AbstractComposer {
+public class RegressiveCounting extends AbastractMailMsgEditor {
 
 	private static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
 
-//	private RegressiveCounting() {
-//		throw new InstantiationError("Utility class, do not instantiate!!!");
-//	}
-
 	public void sendMailToFiveDaysRegressive() {
 		logger.info("INIT : {}", RegressiveCounting.class);
-		for (Person item : PersonDAO.getAll()) {
-			int diff = DayCountUtil.getDiffInDays(item.getInitialDate().plusYears(1).getMillis(),
+		for (Person person : PersonDAO.getAll()) {
+			diff = DayCountUtil.getDiffInDays(person.getInitialDate().plusYears(1).getMillis(),
 					DateTime.now().getMillis());
 			// TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
 			if (diff >= -5 && diff < 0) {
@@ -36,12 +32,12 @@ public class RegressiveCounting extends AbstractComposer {
 	}
 
 	@Override
-	protected String composeMsg(String name) {
+	protected String mailBodyMsg(String name) {
 		return String.format("Hi %s only %d days to Aniversary!!!\n and counting...", name, diff);
 	}
 
 	@Override
-	protected String subject() {
+	protected String mailSubjectMsg() {
 		return "Regressive Counting";
 	}
 

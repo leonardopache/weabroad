@@ -10,22 +10,22 @@ import com.pache.exceptions.EmailError;
 import com.pache.utils.SendMailUtil;
 
 /**
+ * abstract class to delegate the custom messages to subclass
+ * 
  * @author lpache
  *
  */
-//TODO change the name to AbastractMailMsgEditor
-public abstract class AbstractComposer {
-	protected static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
+public abstract class AbastractMailMsgEditor {
+	protected static Logger logger = LoggerFactory.getLogger(AbastractMailMsgEditor.class);
 	protected int diff;
 	
-	//TODO change the name to mailBodyMsg and mailSubjectMsg
-	protected abstract String composeMsg(String name);
-	protected abstract String subject();
+	protected abstract String mailBodyMsg(String name);
+	protected abstract String mailSubjectMsg();
 	
 	protected void send(String destinatary, String name) {
 		logger.info("validate anniversary of {}!!", destinatary);
 		try {
-			SendMailUtil.sendBySSL(destinatary, subject(), composeMsg(name), "leonardo@pache.eng.br");
+			SendMailUtil.sendBySSL(destinatary, mailSubjectMsg(), mailBodyMsg(name), "leonardo@pache.eng.br");
 		} catch (EmailError e) {
 			logger.error("Error {}!!", e.getMessage());
 		}

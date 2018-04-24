@@ -16,13 +16,9 @@ import com.pache.masterdata.PersonDAO;
  * 
  * @author lpache
  */
-public class AnniversaryCount extends AbstractComposer {
+public class AnniversaryCount extends AbastractMailMsgEditor {
 
 	private static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
-
-//	private AnniversaryCount() {
-//		throw new InstantiationError("Utility class, do not instantiate!!!");
-//	}
 
 	public void sendMailToAnniversary() {
 		logger.info("INIT:{} ", AnniversaryCount.class);
@@ -38,12 +34,12 @@ public class AnniversaryCount extends AbstractComposer {
 	}
 
 	@Override
-	protected String composeMsg(String name) {
+	protected String mailBodyMsg(String name) {
 		return String.format("Hi %s congratulations!!!\\n Today is your Aniversary!!!\n Happy BDay to youu!!", name);
 	}
 
 	@Override
-	protected String subject() {
+	protected String mailSubjectMsg() {
 		return "Aniversary";
 	}
 
