@@ -25,14 +25,13 @@ public class RegressiveCounting {
 
 	public static void sendMailToFiveDaysRegressive() {
 		logger.info("INIT : {}", RegressiveCounting.class);
-		for (Person person : PersonDAO.getAll()) {
-			diff = DayCountUtil.getDiffInDays(person.getInitialDate().plusYears(1).getMillis(),
+		for (Person item : PersonDAO.getAll()) {
+			int diff = DayCountUtil.getDiffInDays(item.getInitialDate().plusYears(1).getMillis(),
 					DateTime.now().getMillis());
 			// TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
 			if (diff >= -5 && diff < 0) {
-				send(person.getEmail(), person.getName());
+				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff, item.getName());
 			}
-			logger.debug("Days {}: {}", item.getName(), diff);
 		}
 	}
 
