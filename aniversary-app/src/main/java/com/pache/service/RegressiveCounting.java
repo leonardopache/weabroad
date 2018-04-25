@@ -31,7 +31,7 @@ public class RegressiveCounting {
 			if (diff >= -5 && diff < 0) {
 				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff, item.getName());
 			}
-			logger.debug("Days {}: {}", item.getName(), diff);
+			logger.info("Days {}: {}", item.getName(), diff);
 		}
 	}
 
