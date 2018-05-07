@@ -2,7 +2,6 @@ package com.pache.countdays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 
 import java.util.ArrayList;
@@ -15,13 +14,16 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.pache.exceptions.EmailError;
 import com.pache.masterdata.Person;
 import com.pache.masterdata.PersonDAO;
 import com.pache.service.RegressiveCounting;
 import com.pache.utils.SendMailUtil;
 
 /**
- * Create test cases to six days before, five days before and the day of the anniversary.
+ * Create test cases to six days before, five days before and the day of the
+ * anniversary.
+ * 
  * @author lpache
  */
 @RunWith(PowerMockRunner.class)
@@ -32,7 +34,7 @@ public class RegressiveCountingTest {
 	@Test
 	public void testNotSendSixDaysBefore() {
 		List<Person> people = new ArrayList<Person>();
-		DateTime now = DateTime.now().minusYears(1).minusDays(6);
+		DateTime now = DateTime.now().minusYears(1).plusDays(6);
 		people.add(new Person(now.getDayOfMonth() + "/" + now.getMonthOfYear() + "/" + now.getYear(),
 				"unitTest@mock.test", "Mr. Mockito"));
 
@@ -44,19 +46,21 @@ public class RegressiveCountingTest {
 		PowerMockito.mockStatic(SendMailUtil.class);
 		String message = "Mail sent";
 		PowerMockito.doThrow(new RuntimeException(message)).when(SendMailUtil.class);
-		SendMailUtil.sendMailToRegressiveDays(anyString(), anyInt(), anyString());
 
 		try {
-			RegressiveCounting.sendMailToFiveDaysRegressive();
+			SendMailUtil.sendBySSL(anyString(), anyString(), anyString(), anyString());
+			new RegressiveCounting().sendMailToFiveDaysRegressive();
 		} catch (RuntimeException e) {
 			fail("It not shoud throw an runtime exception!!");
+		} catch (EmailError e) {
+			fail(e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testSendFiveDaysBefore() {
 		List<Person> people = new ArrayList<Person>();
-		DateTime now = DateTime.now().minusYears(1).minusDays(5);
+		DateTime now = DateTime.now().minusYears(1).plusDays(5);
 		people.add(new Person(now.getDayOfMonth() + "/" + now.getMonthOfYear() + "/" + now.getYear(),
 				"unitTest@mock.test", "Mr. Mockito"));
 
@@ -68,16 +72,18 @@ public class RegressiveCountingTest {
 		PowerMockito.mockStatic(SendMailUtil.class);
 		String message = "Mail sent";
 		PowerMockito.doThrow(new RuntimeException(message)).when(SendMailUtil.class);
-		SendMailUtil.sendMailToRegressiveDays(anyString(), anyInt(), anyString());
 
 		try {
-			RegressiveCounting.sendMailToFiveDaysRegressive();
+			SendMailUtil.sendBySSL(anyString(), anyString(), anyString(), anyString());
+			new RegressiveCounting().sendMailToFiveDaysRegressive();
 			fail("It shoud throw an runtime exception!!");
 		} catch (RuntimeException e) {
 			assertEquals(message, e.getMessage());
+		} catch (EmailError e) {
+			fail(e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testNotSendTheDayOfAnniversary() {
 		List<Person> people = new ArrayList<Person>();
@@ -93,12 +99,14 @@ public class RegressiveCountingTest {
 		PowerMockito.mockStatic(SendMailUtil.class);
 		String message = "Mail sent";
 		PowerMockito.doThrow(new RuntimeException(message)).when(SendMailUtil.class);
-		SendMailUtil.sendMailToRegressiveDays(anyString(), anyInt(), anyString());
 
 		try {
-			RegressiveCounting.sendMailToFiveDaysRegressive();
+			SendMailUtil.sendBySSL(anyString(), anyString(), anyString(), anyString());
+			new RegressiveCounting().sendMailToFiveDaysRegressive();
 		} catch (RuntimeException e) {
 			fail("It not shoud throw an runtime exception!!");
+		} catch (EmailError e) {
+			fail(e.getMessage());
 		}
 	}
 

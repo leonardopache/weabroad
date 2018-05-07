@@ -10,31 +10,37 @@ import org.slf4j.LoggerFactory;
 import com.pache.countdays.DayCountUtil;
 import com.pache.masterdata.Person;
 import com.pache.masterdata.PersonDAO;
-import com.pache.utils.SendMailUtil;
 
 /**
  * Class responsible for verify if is the anniversary and send email
  * 
  * @author lpache
  */
-public class AnniversaryCount {
+public class AnniversaryCount extends AbastractMailMsgEditor {
 
 	private static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
 
-	private AnniversaryCount() {
-		throw new InstantiationError("Utility class, do not instantiate!!!");
+	public void sendMailToAnniversary() {
+		logger.info("INIT:{} ", AnniversaryCount.class);
+		for (Person person : PersonDAO.getAll()) {
+			int diff = DayCountUtil.getDiffInDays(person.getInitialDate().plusYears(1).getMillis(),
+					DateTime.now().getMillis());
+			// TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
+			if (diff == 0) {
+				send(person.getEmail(), person.getName());
+			}
+			logger.debug("Days {}: {}", person.getName(), diff);
+		}
 	}
 
-	public static void sendMailToAnniversary() {
-		logger.info("INIT:{} ", AnniversaryCount.class);
-		for (Person item : PersonDAO.getAll()) {
-			int diff = DayCountUtil.getDiffInDays(item.getInitialDate().plusYears(1).getMillis(), DateTime.now().getMillis());
-			//TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
-			if (diff == 0) {
-				SendMailUtil.sendMailToAniversary(item.getEmail(), item.getName());
-			}
-			logger.debug("Days {}: {}", item.getName(), diff);
-		}
+	@Override
+	protected String mailBodyMsg(String name) {
+		return String.format("Hi %s congratulations!!!<br> Today is your Aniversary!!!<br> Happy BDay to youu!!", name);
+	}
+
+	@Override
+	protected String mailSubjectMsg() {
+		return "Aniversary";
 	}
 
 }

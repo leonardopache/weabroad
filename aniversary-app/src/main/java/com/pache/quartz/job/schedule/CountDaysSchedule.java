@@ -32,7 +32,7 @@ public class CountDaysSchedule {
 				.withSchedule(CronScheduleBuilder.cronSchedule("0 0 12 * * ?")).build();
 		// Trigger the job to run the last 5 days
 		Trigger trigger2 = TriggerBuilder.newTrigger().withIdentity("trigger2", GROUP)
-				.withSchedule(CronScheduleBuilder.cronSchedule("0 0 9 * * ?")).build();
+				.withSchedule(CronScheduleBuilder.cronSchedule("0 0 7 * * ?")).build();
 
 		JobKey jobKeyA = new JobKey("job1", GROUP);
 		JobDetail jobAniversary = JobBuilder.newJob(AniversaryJob.class).withIdentity(jobKeyA).build();

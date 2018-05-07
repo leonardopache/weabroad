@@ -18,8 +18,8 @@ public class PersonDAO {
 	private static Map<Integer, Person> md = new HashMap<Integer, Person>();
 
 	static {
-//		id++;
-//		md.put(id, new Person(Person.JU_START, "mail@mail.com", "Ju"));
+		id++;
+		md.put(id, new Person(Person.JU_START, "juciara.nep@gmail.com", "Ju Baby"));
 		id++;
 		md.put(id, new Person(Person.LEO_START, "leonardo@pache.eng.br", "Leo"));
 	}

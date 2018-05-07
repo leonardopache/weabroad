@@ -34,7 +34,7 @@ public class SendMailUtilTest {
 	public void testSendBySSL() {
 		String destination = "leonardo@pache.eng.br";
 		String subject = "Unit Test EmailAPI";
-		String body = String.format("Hi %s only %d days to Aniversary!!!<br> and counting...", ":)", 5);
+		String body = String.format("Hi %s congratulations!!!<br> Today is your Aniversary!!!<br> Happy BDay to youu!!", "Unit Test");
 		try {
 			SendMailUtil.sendBySSL(destination, subject, body);
 		} catch (EmailError e) {
