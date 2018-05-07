@@ -19,7 +19,7 @@ public class PersonDAO {
 
 	static {
 //		id++;
-//		md.put(id, new Person(Person.JU_START, "mail@mail.com", "Ju"));
+//		md.put(id, new Person(Person.JU_START, "mail@mail.com", "Ju Baby"));
 		id++;
 		md.put(id, new Person(Person.LEO_START, "leonardo@pache.eng.br", "Leo"));
 	}

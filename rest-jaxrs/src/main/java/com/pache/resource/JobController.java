@@ -7,8 +7,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.pache.app.exception.ApplicationResponseError;
 import com.pache.quartz.job.ManagerJobCountDays;
-import com.pache.resource.exception.ApplicationResponseError;
 import com.pache.utils.ManagerControls;
 
 @Path("/job")

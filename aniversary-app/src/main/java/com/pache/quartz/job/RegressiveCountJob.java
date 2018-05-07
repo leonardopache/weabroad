@@ -16,7 +16,7 @@ import com.pache.service.RegressiveCounting;
 public class RegressiveCountJob implements Job {
 
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		RegressiveCounting.sendMailToFiveDaysRegressive();
+		new RegressiveCounting().sendMailToFiveDaysRegressive();
 	}
 
 }

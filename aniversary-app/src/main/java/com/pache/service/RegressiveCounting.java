@@ -15,24 +15,31 @@ import com.pache.utils.SendMailUtil;
 /**
  * @author lpache
  */
-public class RegressiveCounting {
+public class RegressiveCounting extends AbastractMailMsgEditor {
 
-	private static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
-
-	private RegressiveCounting() {
-		throw new InstantiationError("Utility class, do not instantiate!!!");
+	private static Logger logger = LoggerFactory.getLogger(RegressiveCounting.class);
+	
+	public void sendMailToFiveDaysRegressive() { 
+		logger.info("INIT : {}", RegressiveCounting.class);
+		for (Person person : PersonDAO.getAll()) {
+			diff = DayCountUtil.getDiffInDays(person.getInitialDate().plusYears(1).getMillis(),
+					DateTime.now().getMillis());
+			// TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
+			if (diff >= -5 && diff < 0) {
+				send(person.getEmail(), person.getName());
+			}
+			logger.debug("Days {}: {}", person.getName(), diff);
+		}
+	}
+	
+	@Override
+	protected String mailBodyMsg(String name) {
+		return String.format("Hi %s only %d days to Aniversary!!!<br> and counting...", name, Math.abs(diff));
 	}
 
-	public static void sendMailToFiveDaysRegressive() {
-		logger.info("INIT : {}", RegressiveCounting.class);
-		for (Person item : PersonDAO.getAll()) {
-			int diff = DayCountUtil.getDiffInDays(item.getInitialDate().plusYears(1).getMillis(), DateTime.now().getMillis());
-			//TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
-			if (diff >= -5 && diff < 0) {
-				SendMailUtil.sendMailToRegressiveDays(item.getEmail(), diff, item.getName());
-			}
-			logger.info("Days {}: {}", item.getName(), diff);
-		}
+	@Override
+	protected String mailSubjectMsg() {
+		return "Regressive Counting";
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.pache.quartz.job;
 
+import com.pache.app.exception.ApplicationResponseError;
 import com.pache.exception.JobManagerException;
 import com.pache.quartz.job.schedule.CountDaysSchedule;
-import com.pache.resource.exception.ApplicationResponseError;
 import com.pache.utils.ManagerControls;
 
 //TODO use injection 

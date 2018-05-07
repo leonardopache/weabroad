@@ -115,7 +115,7 @@ public class SendMailUtil {
 	}
 	
 	private static String getBodyGeneric(String str) {
-		return String.format("<div style=\"text-align: center;\"><b><font color=black size=\"8\">%s</font></b><br></div>", str);
+		return String.format("<div style=\"text-align: center;\"><font color=black size=\"6\">%s</font><br></div>", str);
 	}
 
 	private static Session createSession(final String username, final String password, Properties props) {
@@ -137,24 +137,5 @@ public class SendMailUtil {
 			throw new EmailError("Error - protocol undefined");
 		}
 	}
-
-	public static void sendMailToAniversary(String destinatary, String name) {
-		logger.info("validate niversary of {}!!", destinatary);
-		try {
-			String body = String.format("Hi %s congratulations!!!\\n Today is your Aniversary!!!\n and counting...",name);
-			sendBySSL(destinatary, "Aniversary", body, "leonardo@pache.eng.br");
-		} catch (EmailError e) {
-			logger.error("Error {}!!", e.getMessage());
-		}
-	}
-
-	public static void sendMailToRegressiveDays(String destinatary, int diff, String name) {
-		logger.info("{} year {}!!", diff,  destinatary);
-		try {
-			String body = String.format("Hi %s only %d days to Aniversary!!!\n and counting...",name, diff);
-			sendBySSL(destinatary, "Regressive Counting", body, "leonardo@pache.eng.br");
-		} catch (EmailError e) {
-			logger.error("Error {}!!", e.getMessage());
-		}
-	}
+	
 }
