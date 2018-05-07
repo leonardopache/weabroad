@@ -115,7 +115,7 @@ public class SendMailUtil {
 	}
 	
 	private static String getBodyGeneric(String str) {
-		return String.format("<div style=\"text-align: center;\"><b><font color=black size=\"8\">%s</font></b><br></div>", str);
+		return String.format("<div style=\"text-align: center;\"><font color=black size=\"6\">%s</font><br></div>", str);
 	}
 
 	private static Session createSession(final String username, final String password, Properties props) {

@@ -35,7 +35,7 @@ public class AnniversaryCount extends AbastractMailMsgEditor {
 
 	@Override
 	protected String mailBodyMsg(String name) {
-		return String.format("Hi %s congratulations!!!\\n Today is your Aniversary!!!\n Happy BDay to youu!!", name);
+		return String.format("Hi %s congratulations!!!<br> Today is your Aniversary!!!<br> Happy BDay to youu!!", name);
 	}
 
 	@Override

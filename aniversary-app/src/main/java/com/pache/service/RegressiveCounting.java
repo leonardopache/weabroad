@@ -33,7 +33,7 @@ public class RegressiveCounting extends AbastractMailMsgEditor {
 
 	@Override
 	protected String mailBodyMsg(String name) {
-		return String.format("Hi %s only %d days to Aniversary!!!\n and counting...", name, diff);
+		return String.format("Hi %s only %d days to Aniversary!!!<br> and counting...", name, Math.abs(diff));
 	}
 
 	@Override
