@@ -1,5 +1,7 @@
 # We-abroad
 
+[![Build Status](https://semaphoreci.com/api/v1/leonardopache/weabroad/branches/master/badge.svg)](https://semaphoreci.com/leonardopache/weabroad)
+
 ### Sample using some programming concepts like:
 
 - Java8
