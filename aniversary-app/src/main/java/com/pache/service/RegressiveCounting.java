@@ -10,15 +10,16 @@ import org.slf4j.LoggerFactory;
 import com.pache.countdays.DayCountUtil;
 import com.pache.masterdata.Person;
 import com.pache.masterdata.PersonDAO;
+import com.pache.utils.SendMailUtil;
 
 /**
  * @author lpache
  */
 public class RegressiveCounting extends AbastractMailMsgEditor {
 
-	private static Logger logger = LoggerFactory.getLogger(AnniversaryCount.class);
-
-	public void sendMailToFiveDaysRegressive() {
+	private static Logger logger = LoggerFactory.getLogger(RegressiveCounting.class);
+	
+	public void sendMailToFiveDaysRegressive() { 
 		logger.info("INIT : {}", RegressiveCounting.class);
 		for (Person person : PersonDAO.getAll()) {
 			diff = DayCountUtil.getDiffInDays(person.getInitialDate().plusYears(1).getMillis(),
@@ -30,7 +31,7 @@ public class RegressiveCounting extends AbastractMailMsgEditor {
 			logger.debug("Days {}: {}", person.getName(), diff);
 		}
 	}
-
+	
 	@Override
 	protected String mailBodyMsg(String name) {
 		return String.format("Hi %s only %d days to Aniversary!!!<br> and counting...", name, Math.abs(diff));
