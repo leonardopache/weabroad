@@ -94,4 +94,35 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>run-mutation-pitest</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-maven</artifactId>
+						<version>1.4.0</version>
+						<configuration>
+							<outputFormats>
+								<param>CSV</param>
+								<param>HTML</param>
+							</outputFormats>
+                            <testPlugin>junit</testPlugin>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>mutationCoverage</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
 </project>
