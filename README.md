@@ -9,7 +9,6 @@
 - Jax-rs / Jersey
 - Javax.mail
 - JUnit/Powermock
-- 
 - Maven
 
 ### Project Structure

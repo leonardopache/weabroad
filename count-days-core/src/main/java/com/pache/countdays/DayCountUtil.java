@@ -19,10 +19,20 @@ public class DayCountUtil {
 	private DayCountUtil() {
 		throw new InstantiationError("Utility class, do not instantiate!!!");
 	}
-
+	
 	public static int getDiffInDays(long startTime, long timeNow) {
 		logger.debug("Count days between {} and {}", startTime, timeNow);
 		Days days = Days.daysBetween(new DateTime(startTime).withTimeAtStartOfDay(), new DateTime(timeNow).withTimeAtStartOfDay());
 		return days.getDays();
+	}
+
+	public static boolean isAniversary(DateTime date1, DateTime date2) {
+		date1 = date1.withYear(date2.getYear());
+		int diff = DayCountUtil.getDiffInDays(date1.getMillis(),
+				date2.getMillis());
+		if (diff == 0) {
+			return true;
+		}
+		return false;
 	}
 }

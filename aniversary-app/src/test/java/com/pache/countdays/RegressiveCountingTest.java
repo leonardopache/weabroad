@@ -28,7 +28,6 @@ import com.pache.utils.SendMailUtil;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(value = { PersonDAO.class, SendMailUtil.class })
-
 public class RegressiveCountingTest {
 
 	@Test
