@@ -23,12 +23,11 @@ public class AnniversaryCount extends AbastractMailMsgEditor {
 	public void sendMailToAnniversary() {
 		logger.info("INIT:{} ", AnniversaryCount.class);
 		for (Person person : PersonDAO.getAll()) {
-			int diff = DayCountUtil.getDiffInDays(person.getInitialDate().plusYears(1).getMillis(),
-					DateTime.now().getMillis());
-			// TODO REFACTOR TO WORK EVERY YEAR NOT ONLY ONE YEAR
-			if (diff == 0) {
+			
+			if(DayCountUtil.isAniversary(person.getInitialDate(), DateTime.now())) {
 				send(person.getEmail(), person.getName());
 			}
+			
 			logger.debug("Days {}: {}", person.getName(), diff);
 		}
 	}

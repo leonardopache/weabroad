@@ -18,7 +18,7 @@ public class SendMailUtilTest {
 //		doNothing().when(t).send((Message) any(Message.class));
 	}
 	
-	@Test
+//	@Test
 	public void testSendByTLS() {
 		String destination = "leonardo@pache.eng.br";
 		String subject = "Unit Test EmailAPI";
@@ -30,7 +30,7 @@ public class SendMailUtilTest {
 		}
 	}
 
-	@Test
+//	@Test
 	public void testSendBySSL() {
 		String destination = "leonardo@pache.eng.br";
 		String subject = "Unit Test EmailAPI";
